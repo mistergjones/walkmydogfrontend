@@ -6,7 +6,7 @@ import FooterNavigation from "./FooterNavigation";
 const FooterHeader = (props) => {
     return (
         <div className="footerHeader">
-            <h1>Footer Logo here</h1>
+            <h1>Footer Logo</h1>
             <FooterNavigation />
         </div>
     );

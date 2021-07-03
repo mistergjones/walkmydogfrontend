@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Login.css";
 import Button from "../UI/Button/Button";
 
+import MainHeader from "../MainHeader/MainHeader";
+import MainFooter from "../MainFooter/FooterHeader";
+
 const Login = (props) => {
     // use State to check for updates and validate credentials
     const [enteredEmail, setEnteredEmail] = useState("");
@@ -18,7 +21,7 @@ const Login = (props) => {
             console.log("cleanup");
             console.log("IS Form valid?", formIsValid);
         };
-    }, [enteredEmail, enteredPassword]);
+    }, [formIsValid, enteredEmail, enteredPassword]);
 
     const emailChangeHandler = (event) => {
         setEnteredEmail(event.target.value);
@@ -40,40 +43,45 @@ const Login = (props) => {
 
     const submitFormHandler = (event) => {
         event.preventDefault();
-        // NEED TO COME BACK TO THIS
+        // now invoke the props.onLogin method passed to it to actually login
+        props.onLogin(enteredEmail, enteredPassword);
     };
-    return (
-        <div className="login">
-            <h2>Please Login</h2>
-            <form onSubmit={submitFormHandler}>
-                <label htmlFor="loginEmail">
-                    Please enter your email address
-                </label>
-                <br></br>
-                <input
-                    type="email"
-                    name=""
-                    id="loginEmail"
-                    value={enteredEmail}
-                    onChange={emailChangeHandler}
-                    onBlur={validateEmailHandler}
-                />
-                <br></br>
 
-                <label htmlFor="loginPassword">Your password</label>
-                <br></br>
-                <input
-                    type="password"
-                    name=""
-                    id="loginPassword"
-                    value={enteredPassword}
-                    onChange={passwordChangeHandler}
-                    onBlur={validatePasswordHandler}
-                />
-                <br></br>
-                <Button type="submit" disabled={!formIsValid}></Button>
-            </form>
-        </div>
+    return (
+        <>
+            <MainHeader />
+            <div className="login">
+                <h2>Please Login</h2>
+                <form className="loginForm" onSubmit={submitFormHandler}>
+                    <label htmlFor="loginEmail">
+                        Please enter your email address
+                    </label>
+
+                    <input
+                        type="email"
+                        name=""
+                        id="loginEmail"
+                        value={enteredEmail}
+                        onChange={emailChangeHandler}
+                        onBlur={validateEmailHandler}
+                    />
+
+                    <label htmlFor="loginPassword">Your password</label>
+
+                    <input
+                        type="password"
+                        name=""
+                        id="loginPassword"
+                        value={enteredPassword}
+                        onChange={passwordChangeHandler}
+                        onBlur={validatePasswordHandler}
+                    />
+
+                    <Button type="submit" disabled={!formIsValid}></Button>
+                </form>
+            </div>
+            <MainFooter />
+        </>
     );
 };
 

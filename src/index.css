@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 body {
-    margin: 0;
+    /* as the footer is 5REM in height, make marginBottom 5 REM so we can see all scrolling content */
+    margin-bottom: 5rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
