@@ -1,6 +1,6 @@
 import React from "react";
 import "./MainHeader.css";
-import Navigation from "./Navigtion";
+import Navigation from "./Navigation";
 
 // NOTE: simply prop drilling to Navigation if a successful login
 const MainHeader = (props) => {
